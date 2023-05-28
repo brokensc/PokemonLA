@@ -101,6 +101,7 @@ public class poochyena : Empty
             }
             if (isToxicDone) { EmptyToxic(); }
         }
+        InvincibleUpdate();
     }
 
     private void FixedUpdate()

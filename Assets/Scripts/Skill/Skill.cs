@@ -32,6 +32,7 @@ public class Skill : MonoBehaviour
     //Tag1:接触类 Tag2:非接触类 Tag3:爪类 Tag4:牙类 Tag5:声音类
     public bool isDirection;
     public bool isMoveWithPlayer;
+    public bool isMultipleDamage;
 
 
     // Start is called before the first frame update
@@ -52,7 +53,7 @@ public class Skill : MonoBehaviour
     public void HitAndKo(Empty target)
     {
 
-        if (!isHitDone) {
+        if (isMultipleDamage || !isHitDone) {
             if(Damage == 0)
             {
                 if(Random.Range(0.0f , 1.0f ) >= 0.04f + 0.01f * player.LuckPoint)

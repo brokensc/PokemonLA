@@ -175,6 +175,7 @@ public class Snorlax : Empty
 
 
         }
+        InvincibleUpdate();
     }
     
     private void FixedUpdate()

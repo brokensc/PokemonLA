@@ -47,6 +47,7 @@ public class Gastly : Empty
             EmptyDie();
             if (isToxicDone) { EmptyToxic(); }
         }
+        InvincibleUpdate();
     }
 
     private void FixedUpdate()

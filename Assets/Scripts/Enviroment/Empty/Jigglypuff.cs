@@ -61,6 +61,7 @@ public class Jigglypuff : Empty
         {
            CheckTurn();
         }
+        InvincibleUpdate();
     }
 
     private void FixedUpdate()

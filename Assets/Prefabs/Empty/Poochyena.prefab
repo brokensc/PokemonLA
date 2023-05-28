@@ -294,6 +294,8 @@ MonoBehaviour:
   SpeedEmptyPoint: 35
   EmptyType01: 17
   EmptyType02: 0
+  TimeInvincible: 0.8
+  isInvincible: 0
   isDie: 0
   isHit: 0
   Exp: 0

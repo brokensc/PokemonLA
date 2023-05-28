@@ -51,6 +51,7 @@ public class Oddish : Empty
             StateMaterialChange();
             if (isToxicDone) { EmptyToxic(); }
         }
+        InvincibleUpdate();
     }
 
     private void FixedUpdate()

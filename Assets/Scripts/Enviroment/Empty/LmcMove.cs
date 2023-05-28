@@ -49,6 +49,7 @@ public class LmcMove : Empty
             EmptyDie();
             StateMaterialChange();
         }
+        InvincibleUpdate();
     }
 
     private void FixedUpdate()

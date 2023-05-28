@@ -36,6 +36,10 @@ public class Empty : Pokemon
     public int SpeedAbilityPoint { get { return SpeedAbility; } set { SpeedAbility = value; } }
     int SpeedAbility;
 
+    //声明一个浮点型变量代表无敌时间，一个浮点型变量作为无敌时间计时器，一个布尔型变量判断是否无敌
+    public float TimeInvincible;
+    float InvincileTimer = 0.0f;
+    public bool isInvincible = false;
 
     public delegate void EmptyEvent();
     public EmptyEvent DestoryEvent;
@@ -94,6 +98,17 @@ public class Empty : Pokemon
         maxHP = EmptyHp;
     }
 
+    protected void InvincibleUpdate()
+    {
+        if (isInvincible)
+        {
+            InvincileTimer -= Time.deltaTime;
+            if (InvincileTimer <= 0)
+            {
+                isInvincible = false;
+            }
+        }
+    }
 
     protected int AbilityForLevel(int level, int Ability)
     {
@@ -106,33 +121,37 @@ public class Empty : Pokemon
     //声明一个函数，改变敌人对象的血量
     public void EmptyHpChange(float  Dmage , float SpDmage , int SkillType)
     {
-        if (Dmage + SpDmage >= 0)
-        {
-            if (SkillType != 19)
+        if (!isInvincible) {
+            if (Dmage + SpDmage >= 0)
             {
-                EmptyHp -= (int)((Dmage + SpDmage) * (Type.TYPE[SkillType][EmptyType01]) * Type.TYPE[SkillType][EmptyType02]);
+                if (SkillType != 19)
+                {
+                    EmptyHp -= (int)((Dmage + SpDmage) * (Type.TYPE[SkillType][EmptyType01]) * Type.TYPE[SkillType][EmptyType02]);
+                }
+                else
+                {
+                    EmptyHp -= (int)(Dmage + SpDmage);
+                }
             }
             else
             {
-                EmptyHp -= (int)(Dmage + SpDmage);
+                EmptyHp = Mathf.Clamp(EmptyHp - (int)(Dmage + SpDmage), 0, maxHP);
             }
-        }
-        else
-        {
-            EmptyHp = Mathf.Clamp(EmptyHp - (int)(Dmage + SpDmage) , 0 , maxHP);
-        }
 
-        Debug.Log((int)((Dmage + SpDmage) * (Type.TYPE[SkillType][EmptyType01]) * (Type.TYPE[SkillType][EmptyType02])));
-        if ((int)Dmage + (int)SpDmage > 0)
-        {
-            animator.SetTrigger("Hit");
-            uIHealth.Per = (float)EmptyHp / (float)maxHP;
-            uIHealth.ChangeHpDown();
-        }
-        else
-        {
-            uIHealth.Per = (float)EmptyHp / (float)maxHP;
-            uIHealth.ChangeHpUp();
+            Debug.Log((int)((Dmage + SpDmage) * (Type.TYPE[SkillType][EmptyType01]) * (Type.TYPE[SkillType][EmptyType02])));
+            if ((int)Dmage + (int)SpDmage > 0)
+            {
+                animator.SetTrigger("Hit");
+                uIHealth.Per = (float)EmptyHp / (float)maxHP;
+                uIHealth.ChangeHpDown();
+            }
+            else
+            {
+                uIHealth.Per = (float)EmptyHp / (float)maxHP;
+                uIHealth.ChangeHpUp();
+            }
+            isInvincible = true;
+            InvincileTimer = TimeInvincible;
         }
     }
 

@@ -71,6 +71,7 @@ public class WurmpleMove : Empty
 
             if (isToxicDone){EmptyToxic();}
         }
+        InvincibleUpdate();
     }
 
 
