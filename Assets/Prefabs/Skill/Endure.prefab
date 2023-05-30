@@ -4864,4 +4864,7 @@ MonoBehaviour:
   KOPoint: 0
   ColdDown: 4.8
   SkillTag: 
-  isDirection: 1
+  isNotDirection: 1
+  isNotMoveWithPlayer: 0
+  isMultipleDamage: 0
+  isImmediately: 0

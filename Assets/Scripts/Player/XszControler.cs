@@ -32,7 +32,7 @@ public class XszControler : PlayerControler
         Skill01 = Tackle;
         Skill02 = MudSlup;
         Skill03 = Blizzard;
-        Skill04 = TakeDown;
+        Skill04 = Endure;
 
 
         skillBar01.GetSkill(Skill01);
