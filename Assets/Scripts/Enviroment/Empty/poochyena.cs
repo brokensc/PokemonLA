@@ -16,6 +16,7 @@ public class poochyena : Empty
     float BiteTimer = 5.0f;
     Vector2 position;
     Vector2Int direction;
+    Vector2 move;
 
     public GameObject BiteAnimation;
 
@@ -131,7 +132,7 @@ public class poochyena : Empty
 
             }
 
-            Vector2 move = new Vector2(position.x - NowPosition.x, position.y - NowPosition.y);
+            move = new Vector2(position.x - NowPosition.x, position.y - NowPosition.y);
             animator.SetFloat("Speed", move.magnitude);
 
             EmptyBeKnock();

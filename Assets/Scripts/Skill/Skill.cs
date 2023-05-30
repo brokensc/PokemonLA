@@ -5,17 +5,24 @@ using UnityEngine;
 public class Skill : MonoBehaviour
 {
 
-    //声明玩家对象，动画管理者，以及射弹的存在时间和伤害
+    //声明玩家对象，
     public PlayerControler player;
+    //声明技能存在的时间
     public float ExistenceTime;
+    //声明物理威力值
     public float Damage;
+    //声明特攻威力值
     public float SpDamage;
+    //声明是否为威力可变化技能
     public bool IsDamageChangeable;
+    //声明动画管理者
     public Animator animator;
+    //射弹类技能的最大距离
     public float MaxRange;
 
     //声明技能的属性
     public int SkillType;
+    //技能的英文名，中文名，技能描述
     public string SkillName;
     public string SkillChineseName;
     public string SkillDiscribe;
@@ -28,14 +35,24 @@ public class Skill : MonoBehaviour
     public float KOPoint;
     public float ColdDown;
 
+    //技能的Tag
     public int[] SkillTag;
     //Tag1:接触类 Tag2:非接触类 Tag3:爪类 Tag4:牙类 Tag5:声音类
-    public bool isDirection;
-    public bool isMoveWithPlayer;
+
+    //表示技能生成时是否生成于玩家所面对方向，如为Fales生成在玩家所面对的方向，如为False生成在玩家位置（多用于自我buff类技能）
+    public bool isNotDirection;
+
+    //表示技能是否会随着玩家移动 只对于isNotDirection == true的技能生效
+    public bool isNotMoveWithPlayer;
+
+    //表示技能是否是多端攻击
     public bool isMultipleDamage;
 
+    //表示技能生成是否需要抬手，比如位移类技能需要在摁下摁键的那一刻开始位移，而射弹类节能会有一个抬手前摇
+    public bool isImmediately;
 
-    // Start is called before the first frame update
+
+    //引用于所有技能的Update函数，当存在时间耗尽时技能消失
     public void StartExistenceTimer()
     {
         ExistenceTime -= Time.deltaTime;
@@ -45,14 +62,16 @@ public class Skill : MonoBehaviour
         }
     }
 
+    //摧毁技能的函数，因为有时会在动画中调用，所以独立出来
     public void DestroySelf()
     {
         Destroy(gameObject);
     }
 
+    //对敌人target造成伤害和击退
     public void HitAndKo(Empty target)
     {
-
+        
         if (isMultipleDamage || !isHitDone) {
             if(Damage == 0)
             {

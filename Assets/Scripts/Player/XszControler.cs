@@ -14,6 +14,9 @@ public class XszControler : PlayerControler
     public Skill Mist;
     public Skill IcyWind;
     public Skill Earthquake;
+    public Skill Amnesia;
+    public Skill Blizzard;
+    public Skill TakeDown;
     
 
     // Start is called before the first frame update
@@ -28,7 +31,8 @@ public class XszControler : PlayerControler
 
         Skill01 = Tackle;
         Skill02 = MudSlup;
-        Skill03 = Earthquake;
+        Skill03 = Blizzard;
+        Skill04 = TakeDown;
 
 
         skillBar01.GetSkill(Skill01);

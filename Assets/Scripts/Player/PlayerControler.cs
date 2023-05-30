@@ -829,29 +829,54 @@ public class PlayerControler : Pokemon
         }
     }
 
+    //声明一个函数，当调用时发射无前摇类技能
+    public void GetAnimationSkill02Launch()
+    {
+        if (isSkill01lunch && Skill01.isImmediately)
+        {
+            LaunchSkill01(look);
+            isSkill01lunch = false;
+        }
+        if (isSkill02lunch && Skill02.isImmediately)
+        {
+            LaunchSkill02(look);
+            isSkill02lunch = false;
+        }
+        if (isSkill03lunch && Skill03.isImmediately)
+        {
+            LaunchSkill03(look);
+            isSkill03lunch = false;
+        }
+        if (isSkill04lunch && Skill04.isImmediately)
+        {
+            LaunchSkill04(look);
+            isSkill04lunch = false;
+        }
+    }
+
     //声明一个函数，当调用此函数时根据招式方向生成技能1
     protected void LaunchSkill01(Vector2 Direction)
     {
         Skill skillObj = null;
-        if (!Skill01.isDirection) {
+        if (!Skill01.isNotDirection) {
             if (Direction.Equals(new Vector2(1, 0))) {
-                skillObj = Instantiate(Skill01, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 0));
+                skillObj = Instantiate(Skill01, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 0), Skill04.isNotMoveWithPlayer ? null : transform);
             } else if (Direction.Equals(new Vector2(-1, 0)))
             {
-                skillObj = Instantiate(Skill01, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 180));
+                skillObj = Instantiate(Skill01, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 180), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(0, 1)))
             {
-                skillObj = Instantiate(Skill01, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 90));
+                skillObj = Instantiate(Skill01, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 90), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(0, -1)))
             {
-                skillObj = Instantiate(Skill01, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 270));
+                skillObj = Instantiate(Skill01, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 270), Skill04.isNotMoveWithPlayer ? null : transform);
             }
         }
         else
         {
-            skillObj = Instantiate(Skill01, rigidbody2D.position, Quaternion.identity, Skill01.isMoveWithPlayer ? null : transform);
+            skillObj = Instantiate(Skill01, rigidbody2D.position, Quaternion.identity, Skill01.isNotMoveWithPlayer ? null : transform);
         }
         skillObj.player = this;
     }
@@ -859,27 +884,27 @@ public class PlayerControler : Pokemon
     protected void LaunchSkill02(Vector2 Direction)
     {
         Skill skillObj = null;
-        if (!Skill02.isDirection) {
+        if (!Skill02.isNotDirection) {
             if (Direction.Equals(new Vector2(1, 0)))
             {
-                skillObj = Instantiate(Skill02, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 0));
+                skillObj = Instantiate(Skill02, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 0), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(-1, 0)))
             {
-                skillObj = Instantiate(Skill02, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 180));
+                skillObj = Instantiate(Skill02, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 180), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(0, 1)))
             {
-                skillObj = Instantiate(Skill02, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 90));
+                skillObj = Instantiate(Skill02, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 90), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(0, -1)))
             {
-                skillObj = Instantiate(Skill02, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 270));
+                skillObj = Instantiate(Skill02, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 270), Skill04.isNotMoveWithPlayer ? null : transform);
             }
         }
         else
         {
-            skillObj = Instantiate(Skill02, rigidbody2D.position, Quaternion.identity, Skill02.isMoveWithPlayer?null:transform);
+            skillObj = Instantiate(Skill02, rigidbody2D.position, Quaternion.identity, Skill02.isNotMoveWithPlayer?null:transform);
         }
         skillObj.player = this;
     }
@@ -887,28 +912,28 @@ public class PlayerControler : Pokemon
     protected void LaunchSkill03(Vector2 Direction)
     {
         Skill skillObj = null;
-        if (!Skill03.isDirection)
+        if (!Skill03.isNotDirection)
         {
             if (Direction.Equals(new Vector2(1, 0)))
             {
-                skillObj = Instantiate(Skill03, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 0));
+                skillObj = Instantiate(Skill03, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 0), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(-1, 0)))
             {
-                skillObj = Instantiate(Skill03, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 180));
+                skillObj = Instantiate(Skill03, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 180), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(0, 1)))
             {
-                skillObj = Instantiate(Skill03, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 90));
+                skillObj = Instantiate(Skill03, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 90), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(0, -1)))
             {
-                skillObj = Instantiate(Skill03, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 270));
+                skillObj = Instantiate(Skill03, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 270), Skill04.isNotMoveWithPlayer ? null : transform);
             }
         }
         else
         {
-            skillObj = Instantiate(Skill03, rigidbody2D.position, Quaternion.identity, Skill03.isMoveWithPlayer ? null : transform);
+            skillObj = Instantiate(Skill03, rigidbody2D.position, Quaternion.identity, Skill03.isNotMoveWithPlayer ? null : transform);
         }
         skillObj.player = this;
     }
@@ -916,28 +941,28 @@ public class PlayerControler : Pokemon
     protected void LaunchSkill04(Vector2 Direction)
     {
         Skill skillObj = null;
-        if (!Skill04.isDirection)
+        if (!Skill04.isNotDirection)
         {
             if (Direction.Equals(new Vector2(1, 0)))
             {
-                skillObj = Instantiate(Skill04, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 0));
+                skillObj = Instantiate(Skill04, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 0), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(-1, 0)))
             {
-                skillObj = Instantiate(Skill04, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 180));
+                skillObj = Instantiate(Skill04, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 180), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(0, 1)))
             {
-                skillObj = Instantiate(Skill04, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 90));
+                skillObj = Instantiate(Skill04, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 90), Skill04.isNotMoveWithPlayer ? null : transform);
             }
             else if (Direction.Equals(new Vector2(0, -1)))
             {
-                skillObj = Instantiate(Skill04, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 270));
+                skillObj = Instantiate(Skill04, rigidbody2D.position + (Vector2.up * 0.4f) + (Direction * 1), Quaternion.Euler(0, 0, 270), Skill04.isNotMoveWithPlayer ? null : transform);
             }
         }
         else
         {
-            skillObj = Instantiate(Skill04, rigidbody2D.position, Quaternion.identity, Skill04.isMoveWithPlayer ? null : transform);
+            skillObj = Instantiate(Skill04, rigidbody2D.position, Quaternion.identity, Skill04.isNotMoveWithPlayer ? null : transform);
         }
         skillObj.player = this;
     }
